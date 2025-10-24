@@ -1,12 +1,13 @@
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ProductCard from "../../components/ProductCard";
+import SummaryScreen from "../../components/SummaryScreen";
 
 type Props = {};
 
 function Lunches({}: Props) {
   return (
-    <div className="bg-orange-200 min-h-screen">
+    <div className="bg-orange-200 min-h-screen ">
       <header className=" relative flex justify-center items-center h-20 p-5">
         <Link to={"/categories"}>
           <FaArrowAltCircleLeft
@@ -18,8 +19,8 @@ function Lunches({}: Props) {
           Delisopas
         </h1>
       </header>
-      <main className="flex m-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 grid-rows-2 gap-24 ">
+      <main className="flex justify-around  m-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 grid-rows-2 gap-24">
           <ProductCard price={13000}>Almuerzos</ProductCard>
           <ProductCard price={12000}>Bandeja</ProductCard>
           <ProductCard price={4500}>Proteina</ProductCard>
@@ -27,6 +28,9 @@ function Lunches({}: Props) {
           <ProductCard price={19000}>Ejecutivo mojarra</ProductCard>
           <ProductCard price={22000}>Ejecutivo churrasco</ProductCard>
           <ProductCard price={1000}>Para llevar</ProductCard>
+        </div>
+        <div className="">
+          <SummaryScreen />
         </div>
       </main>
     </div>
