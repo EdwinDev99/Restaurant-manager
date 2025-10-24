@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Pages/Home/Home.tsx";
 import CategoriesPage from "./Pages/Categories/CategoriesPage.tsx";
+import Lunches from "./Pages/lunches/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/categories",
     element: <CategoriesPage />,
+  },
+  {
+    path: "/lunch",
+    element: <Lunches />,
   },
 ]);
 
