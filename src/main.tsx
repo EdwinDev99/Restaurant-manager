@@ -6,6 +6,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Pages/Home/Home.tsx";
 import CategoriesPage from "./Pages/Categories/CategoriesPage.tsx";
 import Lunches from "./Pages/lunches/index.tsx";
+import Breakfasts from "./Pages/Breakfasts/index.tsx";
+import Drinks from "./Pages/drinks/index.tsx";
+import Soups from "./Pages/soups/Soups.tsx";
+import Others from "./Pages/others/Other.tsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +27,22 @@ const router = createBrowserRouter([
   {
     path: "/lunch",
     element: <Lunches />,
+  },
+  {
+    path: "/breakfast",
+    element: <Breakfasts />,
+  },
+  {
+    path: "/drinks",
+    element: <Drinks />,
+  },
+  {
+    path: "/soups",
+    element: <Soups />,
+  },
+  {
+    path: "/others",
+    element: <Others />,
   },
 ]);
 

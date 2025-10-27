@@ -23,10 +23,18 @@ function CategoriesPage({}: Props) {
           <Link to={"/lunch"}>
             <CategoryCard>🍖 Almuerzos</CategoryCard>
           </Link>
-          <CategoryCard>🥞 Desayunos</CategoryCard>
-          <CategoryCard>🍺 Bebidas</CategoryCard>
-          <CategoryCard>🍲 Sopas</CategoryCard>
-          <CategoryCard>🍽 Otros</CategoryCard>
+          <Link to={"/breakfast"}>
+            <CategoryCard>🥞 Desayunos</CategoryCard>
+          </Link>
+          <Link to={"/drinks"}>
+            <CategoryCard>🍺 Bebidas</CategoryCard>
+          </Link>
+          <Link to={"/soups"}>
+            <CategoryCard>🍲 Sopas</CategoryCard>
+          </Link>
+          <Link to={"/others"}>
+            <CategoryCard>🍽 Otros</CategoryCard>
+          </Link>
         </div>
       </main>
     </div>
