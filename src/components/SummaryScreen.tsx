@@ -1,3 +1,5 @@
+import { useTable } from "../hooks/UseTable";
+
 type SummaryScreenProps = {
   products: {
     name: string;
@@ -11,9 +13,13 @@ type SummaryScreenProps = {
 function SummaryScreen({ products, onRemove }: SummaryScreenProps) {
   const total = products.reduce((sum, p) => sum + p.price * p.quantity, 0);
 
+  const { table } = useTable();
+
   return (
     <div className="bg-white p-5 rounded-2xl shadow-md w-80 h-fit">
-      <h2 className="text-3xl font-bold mb-4 text-green-800">Resumen</h2>
+      <h2 className="text-3xl font-bold mb-4 text-green-800">
+        Resumen {table}
+      </h2>
       {products.length === 0 ? (
         <p className="text-gray-500">No hay productos aún</p>
       ) : (

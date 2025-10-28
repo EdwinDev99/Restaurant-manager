@@ -13,22 +13,22 @@ function Home({}: Props) {
         </h1>
       </header>
       <main className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-rows-4 gap-32   ">
-        <Table>Mesa 1</Table>
-        <Table>Mesa 2</Table>
-        <Table>Mesa 3</Table>
-        <Table>Mesa 4</Table>
-        <Table>Mesa 5</Table>
-        <Table>Mesa 6</Table>
-        <Table>Mesa 7</Table>
-        <Table>Mesa 8</Table>
-        <Table>Mesa 8</Table>
-        <Table>Mesa 10</Table>
-        <Table>Mesa 11</Table>
-        <Table>Mesa 12</Table>
-        <Table>Mesa 13</Table>
-        <Table>Mesa 14</Table>
-        <Table>Mesa 15</Table>
-        <Table>Mesa 16</Table>
+        <Table nameTable="Mesa 1" />
+        <Table nameTable="Mesa 2" />
+        <Table nameTable="Mesa 3" />
+        <Table nameTable="Mesa 4" />
+        <Table nameTable="Mesa 5" />
+        <Table nameTable="Mesa 6" />
+        <Table nameTable="Mesa 7" />
+        <Table nameTable="Mesa 8" />
+        <Table nameTable="Mesa 9" />
+        <Table nameTable="Mesa 10" />
+        <Table nameTable="Mesa 11" />
+        <Table nameTable="Mesa 12" />
+        <Table nameTable="Mesa 13" />
+        <Table nameTable="Mesa 14" />
+        <Table nameTable="Mesa 15" />
+        <Table nameTable="Mesa 16" />
       </main>
     </div>
   );

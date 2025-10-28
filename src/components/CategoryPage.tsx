@@ -4,6 +4,7 @@ import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import SummaryScreen from "../components/SummaryScreen";
+import { useTable } from "../hooks/UseTable";
 
 type Product = {
   name: string;
@@ -78,6 +79,8 @@ function CategoryPage({
     setCurrentProduct(null);
   };
 
+  const { table } = useTable();
+
   return (
     <div className="bg-orange-200 min-h-screen">
       <header className="relative flex justify-center items-center h-20 p-5">
@@ -88,7 +91,7 @@ function CategoryPage({
           />
         </Link>
         <h1 className="text-green-900 text-6xl font-bold font-serif">
-          {title}
+          {title} {table}
         </h1>
       </header>
 
