@@ -1,17 +1,11 @@
-// src/pages/CategoryPage.tsx
-import { useState } from "react";
+// pages/CategoryPage.tsx
+import { useContext, useState } from "react";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import SummaryScreen from "../components/SummaryScreen";
-import { useTable } from "../hooks/UseTable";
-
-type Product = {
-  name: string;
-  price: number;
-  quantity: number;
-  details?: string;
-};
+import { useOrders } from "../firebase/useOrder";
+import TableContext from "../context/TableContext";
 
 type ProductInfo = {
   name: string;
@@ -19,67 +13,39 @@ type ProductInfo = {
 };
 
 type CategoryPageProps = {
-  title: string; // Ej: "Almuerzos", "Desayunos"
-  backLink?: string; // Para regresar al menú de categorías
-  products: ProductInfo[]; // Lista de productos con nombre y precio
+  title: string;
+  backLink?: string;
+  products: ProductInfo[];
 };
 
-function CategoryPage({
+export default function CategoryPage({
   title,
   backLink = "/categories",
   products,
 }: CategoryPageProps) {
-  const [selectProducts, setSelectProducts] = useState<Product[]>([]);
+  const { addOrder } = useOrders();
   const [showDetails, setShowDetails] = useState(false);
   const [currentProduct, setCurrentProduct] = useState<ProductInfo | null>(
     null
   );
   const [details, setDetails] = useState("");
 
-  const handleAddProduct = (name: string, price: number, details?: string) => {
-    setSelectProducts((prev) => {
-      const existing = prev.find(
-        (p) => p.name === name && p.details === details
-      );
-      if (existing) {
-        return prev.map((p) =>
-          p.name === name && p.details === details
-            ? { ...p, quantity: p.quantity + 1 }
-            : p
-        );
-      }
-      return [...prev, { name, price, quantity: 1, details }];
-    });
-  };
-
-  const handleRemoveProduct = (name: string, details?: string) => {
-    setSelectProducts((prev) =>
-      prev
-        .map((p) =>
-          p.name === name && p.details === details
-            ? { ...p, quantity: p.quantity - 1 }
-            : p
-        )
-        .filter((p) => p.quantity > 0)
-    );
-  };
-
-  const handleOpenDetails = (name: string, price: number) => {
-    setCurrentProduct({ name, price });
+  const handleOpenDetails = (product: ProductInfo) => {
+    setCurrentProduct(product);
     setDetails("");
     setShowDetails(true);
   };
 
   const handleConfirmDetails = () => {
     if (currentProduct) {
-      handleAddProduct(currentProduct.name, currentProduct.price, details);
+      addOrder({ ...currentProduct, quantity: 1, details });
     }
     setShowDetails(false);
     setDetails("");
     setCurrentProduct(null);
   };
 
-  const { table } = useTable();
+  const { table } = useContext(TableContext);
 
   return (
     <div className="bg-orange-200 min-h-screen">
@@ -100,7 +66,7 @@ function CategoryPage({
           {products.map((product) => (
             <ProductCard
               key={product.name}
-              onAdd={() => handleOpenDetails(product.name, product.price)}
+              onAdd={() => handleOpenDetails(product)}
               price={product.price}
             >
               {product.name}
@@ -109,15 +75,12 @@ function CategoryPage({
         </div>
 
         <div className="m-8 lg:mt-0 lg:ml-12">
-          <SummaryScreen
-            products={selectProducts}
-            onRemove={handleRemoveProduct}
-          />
+          <SummaryScreen />
         </div>
       </main>
 
       {/* Modal para agregar detalles */}
-      {showDetails && (
+      {showDetails && currentProduct && (
         <div className="fixed inset-0 bg-black/40 flex justify-center items-center">
           <div className="bg-white p-6 rounded-2xl shadow-lg w-96">
             <h2 className="text-2xl font-bold text-green-800 mb-3">
@@ -149,5 +112,3 @@ function CategoryPage({
     </div>
   );
 }
-
-export default CategoryPage;
